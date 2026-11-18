@@ -1,6 +1,9 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'java-library'
     id 'net.neoforged.moddev' version '2.0.148'
+    id 'net.darkhax.curseforgegradle' version '1.1.28'
 }
 
 group = 'com.king.botanicfilters'
@@ -56,4 +59,42 @@ dependencies {
     // Botania Revived (CurseForge only) and its required dependency.
     implementation('curse.maven:botania-revived-1725641:9577651') { transitive = false }
     implementation('vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE') { transitive = false }
+}
+
+// ./gradlew curseforge -- uploads the jar; needs CURSEFORGE_TOKEN and CURSEFORGE_PROJECT_ID.
+def cfToken = System.getenv('CURSEFORGE_TOKEN')
+def cfProjectId = System.getenv('CURSEFORGE_PROJECT_ID')
+
+if (cfToken && cfProjectId) {
+    tasks.register('curseforge', TaskPublishCurseForge) {
+        group = 'publishing'
+        description = 'Uploads the built jar to CurseForge.'
+        apiToken = cfToken
+        disableVersionDetection()
+
+        def mainFile = upload(cfProjectId, tasks.named('jar').flatMap { it.archiveFile })
+        mainFile.displayName = "Botanic Filters ${project.version} (1.21.1 NeoForge)"
+        mainFile.releaseType = 'release'
+        mainFile.changelogType = 'markdown'
+        mainFile.changelog = '''
+Create filters now also work in the Hopperhock.
+
+The Hopperhock reads Create's List, Attribute and Package filters from its item frames and only picks up the items they match (respecting blacklist mode), so the same filters drive both the Corporea Funnel and Hopperhock pickup.
+
+Requires Create 6.0.10+ and Botania Revived 2.0.2+ on Minecraft 1.21.1 (NeoForge).
+'''
+        mainFile.addGameVersion('1.21.1')
+        mainFile.addModLoader('NeoForge')
+        mainFile.addJavaVersion('Java 21')
+        mainFile.addRequirement('create')
+        mainFile.addRequirement('botania')
+    }
+} else {
+    tasks.register('curseforge') {
+        group = 'publishing'
+        description = 'Uploads the built jar to CurseForge (needs CURSEFORGE_TOKEN and CURSEFORGE_PROJECT_ID).'
+        doFirst {
+            throw new GradleException('Set the CURSEFORGE_TOKEN and CURSEFORGE_PROJECT_ID environment variables to upload.')
+        }
+    }
 }
