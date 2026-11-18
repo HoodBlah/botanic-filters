@@ -6,7 +6,8 @@
   "plugin": "com.king.botanicfilters.mixin.BotanicFiltersMixinPlugin",
   "mixins": [
     "CorporeaHelperImplMixin",
-    "CorporeaItemStackMatcherMixin"
+    "CorporeaItemStackMatcherMixin",
+    "HopperhockBlockEntityMixin"
   ],
   "client": [],
   "injectors": {

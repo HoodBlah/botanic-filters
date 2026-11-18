@@ -8,8 +8,9 @@ version="1.0.0"
 displayName="Botanic Filters"
 logoFile="icon.png"
 description='''
-Lets Create's List, Attribute and Package filters be used in Botania Revived's Corporea Funnel.
-Place a Create filter in an item frame on the funnel and the funnel requests items matching the filter.
+Lets Create's List, Attribute and Package filters be used in Botania Revived's Corporea Funnel and Hopperhock.
+Place a Create filter in an item frame on the funnel and the funnel requests items matching the filter;
+the same frames on a Hopperhock decide which dropped items it picks up.
 '''
 authors="King"
 
