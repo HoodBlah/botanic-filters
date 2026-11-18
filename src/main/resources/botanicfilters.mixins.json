@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.king.botanicfilters.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "com.king.botanicfilters.mixin.BotanicFiltersMixinPlugin",
+  "mixins": [
+    "CorporeaHelperImplMixin",
+    "CorporeaItemStackMatcherMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

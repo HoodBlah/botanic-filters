@@ -1,0 +1,45 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="botanicfilters"
+version="1.0.0"
+displayName="Botanic Filters"
+logoFile="icon.png"
+description='''
+Lets Create's List, Attribute and Package filters be used in Botania Revived's Corporea Funnel.
+Place a Create filter in an item frame on the funnel and the funnel requests items matching the filter.
+'''
+authors="King"
+
+[[mixins]]
+config="botanicfilters.mixins.json"
+
+[[dependencies.botanicfilters]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.240,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.botanicfilters]]
+modId="minecraft"
+type="required"
+versionRange="1.21.1"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.botanicfilters]]
+modId="create"
+type="required"
+versionRange="[6.0.10,6.1.0)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.botanicfilters]]
+modId="botania"
+type="required"
+versionRange="[2.0.2,)"
+ordering="AFTER"
+side="BOTH"

@@ -1,0 +1,8 @@
+.gradle/
+build/
+run/
+.tools/
+game_logs/
+.idea/
+*.iml
+*.log
